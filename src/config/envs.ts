@@ -1,10 +1,14 @@
 import dotenv from "dotenv";
+import dotenvExpand from "dotenv-expand";
 
-export function loadEnvs() {
-    let path = ".env";
-    if (process.env.NODE_ENV === "test") {
-        path = ".env.test";
-    }
+export function loadEnv() {
+  const path =
+    process.env.NODE_ENV === "test"
+      ? ".env.test"
+      : process.env.NODE_ENV === "development"
+        ? ".env.development"
+        : ".env";
 
-    dotenv.config({ path });
+  const currentEnvs = dotenv.config({ path });
+  dotenvExpand.expand(currentEnvs);
 }
