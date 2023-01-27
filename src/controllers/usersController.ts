@@ -20,3 +20,14 @@ export async function usersPost(req: Request, res: Response) {
   }
 }
 
+export async function loginPost(req: Request, res: Response) {
+  const email = req.body.email;
+  const passwordHash = req.body.passwordHash;
+
+  try {
+    const login = await userService.createLogin({ email, passwordHash });
+    return res.status(httpStatus.OK).send(login);
+  } catch (error) {
+    return res.sendStatus(httpStatus.UNAUTHORIZED);
+  }
+}

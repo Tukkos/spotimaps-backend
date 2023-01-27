@@ -30,8 +30,8 @@ model playlists {
   id              Int               @id(map: "playlists_pk") @default(autoincrement())
   userId          Int
   name            String            @db.VarChar(255)
-  band            String            @db.VarChar(255)
   duration        String            @db.VarChar(255)
+  image           String            @db.VarChar(255)
   createdAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date
   updatedAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date
   users           users             @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "playlists_fk0")
