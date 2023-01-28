@@ -10,7 +10,7 @@ datasource db {
 model musics {
   id              Int               @id(map: "musics_pk") @default(autoincrement())
   name            String            @db.VarChar(255)
-  duration        String            @db.VarChar(255)
+  duration        Int
   createdAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date
   updatedAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date
   musicsPlaylists musicsPlaylists[]
@@ -30,7 +30,7 @@ model playlists {
   id              Int               @id(map: "playlists_pk") @default(autoincrement())
   userId          Int
   name            String            @db.VarChar(255)
-  duration        String            @db.VarChar(255)
+  duration        Int
   image           String            @db.VarChar(255)
   createdAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date
   updatedAt       DateTime          @default(dbgenerated("'2023-01-25'::date")) @db.Date

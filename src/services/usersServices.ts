@@ -43,9 +43,7 @@ async function getUserOrFail(email: string): Promise<GetUserOrFailResult> {
 }
 
 async function validatePasswordOrFail(passwordHash: string, userPassword: string) {
-  console.log(passwordHash, userPassword)
   const isPasswordValid = await bcrypt.compare(passwordHash, userPassword);
-  console.log('aqui;')
   if (!isPasswordValid) return;
 }
 
