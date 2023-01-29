@@ -1,4 +1,7 @@
 import { prisma } from "@/config";
+import { NewMusicProtocol } from "@/protocols/NewMusicProtocol";
+import { NewMusicsPlaylistProtocol } from "@/protocols/NewMusicsPlaylistProtocol";
+import { NewPlaylistProtocol } from "@/protocols/NewPlaylistProtocol";
 
 async function findPlaylists(userId: number) {
   return prisma.playlists.findMany({
@@ -20,8 +23,8 @@ async function findPlaylistMusic(playlistId: number) {
         }
       },
     }
-  })
-}
+  });
+};
 
 async function changePlaylistName(playlistId: number, name: string) {
   return prisma.playlists.update({
@@ -31,13 +34,55 @@ async function changePlaylistName(playlistId: number, name: string) {
     data: {
       name: name,
     }
-  })
-}
+  });
+};
+
+async function createPlaylist(body: NewPlaylistProtocol, userId: number) {
+  const bandName = body.bandName;
+  const duration = body.duration;
+  const image = body.image;
+
+  return prisma.playlists.create({
+    data: {
+      userId: userId,
+      name: `Playlist ${bandName}`,
+      duration: duration,
+      image: image,
+    }
+  });
+};
+
+async function createMusic(body: NewMusicProtocol) {
+  const name = body.name;
+  const duration = body.duration;
+
+  return prisma.musics.create({
+    data: {
+      name: name,
+      duration: duration,
+    }
+  });
+};
+
+async function createMusicsPlaylist(body: NewMusicsPlaylistProtocol, userId: number) {
+  const musicId = body.musicsId;
+  const playlistId = body.playlistId;
+
+  return prisma.musicsPlaylists.create({
+    data: {
+      playlistId: playlistId,
+      musicsId: musicId,
+    }
+  });
+};
 
 const playlistsRepository = {
   findPlaylists,
   findPlaylistMusic,
   changePlaylistName,
+  createPlaylist,
+  createMusic,
+  createMusicsPlaylist,
 };
 
 export default playlistsRepository;
