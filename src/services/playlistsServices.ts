@@ -33,6 +33,21 @@ async function postMusicsPlaylist(body: NewMusicsPlaylistProtocol, userId: numbe
   return newMusicsPlaylist;
 }
 
+async function deleteMusicsPlaylists(musicPlaylistId: number) {
+  await playlistsRepository.deleteMusicsPlaylists(musicPlaylistId);
+  return;
+}
+
+async function deletePlaylists(playlistId: number) {
+  await playlistsRepository.deletePlaylists(playlistId);
+  return;
+}
+
+async function deleteMusics(musicId: number) {
+  await playlistsRepository.deleteMusics(musicId);
+  return;
+}
+
 const playlistsServices = {
   getPlaylists,
   getPlaylistMusics,
@@ -40,6 +55,9 @@ const playlistsServices = {
   postPlaylist,
   postMusic,
   postMusicsPlaylist,
+  deleteMusicsPlaylists,
+  deletePlaylists,
+  deleteMusics,
 };
 
 export default playlistsServices;

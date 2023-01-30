@@ -76,6 +76,30 @@ async function createMusicsPlaylist(body: NewMusicsPlaylistProtocol, userId: num
   });
 };
 
+async function deleteMusicsPlaylists(musicPlaylistId: number) {
+  return prisma.musicsPlaylists.delete({
+    where: {
+      id: musicPlaylistId,
+    }
+  });
+};
+
+async function deletePlaylists(playlistId: number) {
+  return prisma.playlists.delete({
+    where: {
+      id: playlistId,
+    }
+  });
+};
+
+async function deleteMusics(musicId: number) {
+  return prisma.musics.delete({
+    where: {
+      id: musicId,
+    }
+  });
+};
+
 const playlistsRepository = {
   findPlaylists,
   findPlaylistMusic,
@@ -83,6 +107,9 @@ const playlistsRepository = {
   createPlaylist,
   createMusic,
   createMusicsPlaylist,
+  deleteMusicsPlaylists,
+  deletePlaylists,
+  deleteMusics,
 };
 
 export default playlistsRepository;

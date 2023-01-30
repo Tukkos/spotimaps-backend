@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { createMusic, createMusicsPlaylist, createPlaylist, getPlaylistMusic, getUsersPlaylists, putPlaylistName } from "@/controllers/playlistsController";
+import { createMusic, createMusicsPlaylist, createPlaylist, deletePlaylistAndMusics, getPlaylistMusic, getUsersPlaylists, putPlaylistName } from "@/controllers/playlistsController";
 import { authenticateToken } from "@/middlewares/authentication-middleware";
 import { validateBody } from "@/middlewares/validationMiddlewares";
 import { NewPlaylistScheema } from "@/schemas/createPlaylistSchema";
@@ -16,6 +16,7 @@ playlistsRouter
   .put("/name/:playlistId", putPlaylistName)
   .post("", validateBody(NewPlaylistScheema), createPlaylist)
   .post("/music", validateBody(NewMusicSchema), createMusic)
-  .post("/musicsPlaylist", validateBody(NewMusicsPlaylistSchema), createMusicsPlaylist);
+  .post("/musicsPlaylist", validateBody(NewMusicsPlaylistSchema), createMusicsPlaylist)
+  .delete("/:playlistId", deletePlaylistAndMusics);
 
 export { playlistsRouter };

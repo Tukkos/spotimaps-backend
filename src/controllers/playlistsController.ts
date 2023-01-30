@@ -26,7 +26,6 @@ export async function getPlaylistMusic(req: AuthenticatedRequest, res: Response)
 
     const playlistMusics = await playlistsServices.getPlaylistMusics(playlistId);
     return res.status(httpStatus.OK).send(playlistMusics);
-    
   } catch (error) {
     return res.sendStatus(httpStatus.NOT_FOUND);
   }
@@ -42,7 +41,6 @@ export async function putPlaylistName(req: AuthenticatedRequest, res: Response) 
 
     const playlistNewName = await playlistsServices.putPlaylistName(playlistId, name);
     return res.status(httpStatus.OK).send(playlistNewName);
-
   } catch (error) {
     return res.sendStatus(httpStatus.NOT_MODIFIED);
   }
@@ -78,6 +76,29 @@ export async function createMusicsPlaylist(req: AuthenticatedRequest, res: Respo
 
     const musicsPlaylist = await playlistsServices.postMusicsPlaylist(body, userId);
     return res.status(httpStatus.CREATED).send(musicsPlaylist);
+  } catch (error) {
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
+}
+
+export async function deletePlaylistAndMusics(req: AuthenticatedRequest, res: Response) {
+  try {
+    const playlistId = Number(req.params.playlistId);
+    const musics = await playlistsServices.getPlaylistMusics(playlistId);
+
+    musics.musicsPlaylists.map(async (musicPlaylist) => {
+      const musicPlaylistId = musicPlaylist.id;
+      await playlistsServices.deleteMusicsPlaylists(musicPlaylistId);
+    })
+
+    await playlistsServices.deletePlaylists(playlistId);
+
+    musics.musicsPlaylists.map(async (music) => {
+      const musicId = music.musics.id;
+      await playlistsServices.deleteMusics(musicId);
+    })
+
+    return res.sendStatus(httpStatus.OK);
   } catch (error) {
     return res.sendStatus(httpStatus.BAD_REQUEST);
   }

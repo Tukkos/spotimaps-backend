@@ -23,7 +23,7 @@ model musicsPlaylists {
   createdAt  DateTime  @default(dbgenerated("'2023-01-25'::date")) @db.Date
   updatedAt  DateTime  @default(dbgenerated("'2023-01-25'::date")) @db.Date
   musics     musics    @relation(fields: [musicsId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "musicsPlaylists_fk1")
-  playlists  playlists @relation(fields: [playlistId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "musicsPlaylists_fk0")
+  playlists  playlists @relation(fields: [playlistId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "musicsPlaylists_fk0")
 }
 
 model playlists {
