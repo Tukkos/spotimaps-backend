@@ -1,7 +1,7 @@
-import { prisma } from "@/config";
-import { NewMusicProtocol } from "@/protocols/NewMusicProtocol";
-import { NewMusicsPlaylistProtocol } from "@/protocols/NewMusicsPlaylistProtocol";
-import { NewPlaylistProtocol } from "@/protocols/NewPlaylistProtocol";
+import { prisma } from "./../config";
+import { NewMusicProtocol } from "./../protocols/NewMusicProtocol";
+import { NewMusicsPlaylistProtocol } from "./../protocols/NewMusicsPlaylistProtocol";
+import { NewPlaylistProtocol } from "./../protocols/NewPlaylistProtocol";
 
 async function findPlaylists(userId: number) {
   return prisma.playlists.findMany({

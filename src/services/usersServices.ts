@@ -1,6 +1,6 @@
-import userRepository from "@/repository/userRepository";
-import { exclude } from "@/utils/prisma-utils";
-import { users } from "@prisma/client";
+import userRepository from "./../repository/userRepository";
+import { exclude } from "./../utils/prisma-utils";
+import { users } from "./../../node_modules/.prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 

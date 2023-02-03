@@ -1,25 +1,30 @@
 version: "3"
 services:
-  db:
-    image: postgres:13
-    container_name: spotimaps-db
+  banco:
+    image: postgres
+    container_name: banco
     restart: always
     ports:
       - 2345:5432
     env_file:
       - .env
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - volume_banco:/var/lib/postgresql/data
 
-  spotimaps-back:
-    container_name: spotimaps-back
+  app_node:
     build: .
+    container_name: app_node
     ports:
-      - 5000:4002
-    depends_on:
-      - db
+      - 5000:5000
     env_file:
       - .env
+    volumes:
+      - .:/urs/src
+      - /usr/src/node_modules
+    entrypoint: dockerize -wait tcp://banco:5432 -timeout 20s docker-entrypoint.sh
+    command: "npm run dev:migrate"
+    depends_on:
+      - banco
 
 volumes:
-  postgres:
+  volume_banco:

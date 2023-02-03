@@ -1,7 +1,7 @@
-import { NewMusicProtocol } from "@/protocols/NewMusicProtocol";
-import { NewMusicsPlaylistProtocol } from "@/protocols/NewMusicsPlaylistProtocol";
-import { NewPlaylistProtocol } from "@/protocols/NewPlaylistProtocol";
-import playlistsRepository from "@/repository/playlistsRepository";
+import { NewMusicProtocol } from "./../protocols/NewMusicProtocol";
+import { NewMusicsPlaylistProtocol } from "./../protocols/NewMusicsPlaylistProtocol";
+import { NewPlaylistProtocol } from "./../protocols/NewPlaylistProtocol";
+import playlistsRepository from "./../repository/playlistsRepository";
 
 async function getPlaylists(userId: number) {
   const playlists = await playlistsRepository.findPlaylists(userId);

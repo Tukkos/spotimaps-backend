@@ -1,5 +1,5 @@
-import { prisma } from "@/config";
-import { Prisma } from "@prisma/client";
+import { prisma } from "./../config";
+import { Prisma } from "./../../node_modules/.prisma/client";
 
 async function findByEmail(email: string, select?: Prisma.usersSelect) {
   const params: Prisma.usersFindUniqueArgs = {

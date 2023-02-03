@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-import { createMusic, createMusicsPlaylist, createPlaylist, deletePlaylistAndMusics, getPlaylistMusic, getUsersPlaylists, putPlaylistName } from "@/controllers/playlistsController";
-import { authenticateToken } from "@/middlewares/authentication-middleware";
-import { validateBody } from "@/middlewares/validationMiddlewares";
-import { NewPlaylistScheema } from "@/schemas/createPlaylistSchema";
-import { NewMusicSchema } from "@/schemas/createMusicSchema";
-import { NewMusicsPlaylistSchema } from "@/schemas/createMusicPlaylistSchema";
+import { createMusic, createMusicsPlaylist, createPlaylist, deletePlaylistAndMusics, getPlaylistMusic, getUsersPlaylists, putPlaylistName } from "./../controllers/playlistsController";
+import { authenticateToken } from "./../middlewares/authentication-middleware";
+import { validateBody } from "./../middlewares/validationMiddlewares";
+import { NewPlaylistScheema } from "./../schemas/createPlaylistSchema";
+import { NewMusicSchema } from "./../schemas/createMusicSchema";
+import { NewMusicsPlaylistSchema } from "./../schemas/createMusicPlaylistSchema";
 
 const playlistsRouter = Router();
 

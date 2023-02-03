@@ -1,11 +1,11 @@
 import httpStatus from "http-status";
 import { Response } from "express";
 
-import { AuthenticatedRequest } from "@/middlewares/authentication-middleware";
-import playlistsServices from "@/services/playlistsServices";
-import { NewPlaylistProtocol } from "@/protocols/NewPlaylistProtocol";
-import { NewMusicProtocol } from "@/protocols/NewMusicProtocol";
-import { NewMusicsPlaylistProtocol } from "@/protocols/NewMusicsPlaylistProtocol";
+import { AuthenticatedRequest } from "./../middlewares/authentication-middleware";
+import playlistsServices from "./../services/playlistsServices";
+import { NewPlaylistProtocol } from "./../protocols/NewPlaylistProtocol";
+import { NewMusicProtocol } from "./../protocols/NewMusicProtocol";
+import { NewMusicsPlaylistProtocol } from "./../protocols/NewMusicsPlaylistProtocol";
 
 export async function getUsersPlaylists(req: AuthenticatedRequest, res: Response) {
   try {
